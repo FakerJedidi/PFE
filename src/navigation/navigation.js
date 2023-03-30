@@ -1,5 +1,3 @@
-import React from 'react';
-import {View, Text, StyleSheet} from 'react-native';
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import LanguageScreen from "../screens/LanguageScreen";
@@ -7,19 +5,21 @@ import SplashScreen from '../screens/SplashScreen';
 import LicenseScreen from "../screens/LicenseScreen";
 import FormulaireScreen from "../screens/FormulaireScreen";
 import CodeScreen from "../screens/CodeScreen";
-import PrecodeScreen from "../screens/PrecodeScreen";
-import pointageScreen from "../screens/PointageScreen";
-import ArriveeScreen from "../screens/ArriveeScreen";
+import PercodeScreen from "../screens/PercodeScreen";
+import pointageScreen from "../screens/pointageScreen";
+import ArriveeScreen from "../screens/ArriveeScrenn";
 import DepartScreen from "../screens/DepartScreen";
 import PauseScreen from "../screens/PauseScreen";
 import RetpauseScreen from "../screens/RetpauseScreen";
 
+
 const Stack = createNativeStackNavigator();
 
-export default function Navigation() {
-    return (
-       <NavigationContainer>
-        <Stack.Navigator>
+
+export default function App() {
+  return (
+    <NavigationContainer>
+      <Stack.Navigator>
         <Stack.Screen 
           name="Splash"
           component={SplashScreen}
@@ -43,23 +43,24 @@ export default function Navigation() {
         <Stack.Screen 
           name="Code"
           component={CodeScreen}
-          options={{title: 'Code'}}
+          options={{title: 'code'}}
         />
-         <Stack.Screen 
-          name="Precode"
-          component={PrecodeScreen}
-          options={{title: 'Precode'}}
+          <Stack.Screen 
+          name="Percode"
+          component={PercodeScreen}
+          options={{title: 'Percode'}}
         />
-        <Stack.Screen 
+          <Stack.Screen 
           name="pointage"
           component={pointageScreen}
           options={{title: 'pointage'}}
         />
-         <Stack.Screen 
+
+          <Stack.Screen 
           name="Arrivee"
           component={ArriveeScreen}
           options={{title: 'Arrivee'}}
-         />
+        />
           <Stack.Screen 
           name="Depart"
           component={DepartScreen}
@@ -75,7 +76,11 @@ export default function Navigation() {
           component={RetpauseScreen}
           options={{title: 'Retpause'}}
         />
-        </Stack.Navigator>
-       </NavigationContainer>
-    );
-};
+     
+
+        
+      </Stack.Navigator>
+    </NavigationContainer>
+
+  );
+}

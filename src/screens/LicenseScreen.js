@@ -6,29 +6,30 @@ import { CheckBox } from 'react-native-elements';
 export default function LicenseScreen({navigation,route}) {
 
   return (
-    <ImageBackground source={require('../../assets/bg.png')}style={styles.container}>
+    <ImageBackground source={require('../../assets/icons/bg.png')}style={styles.container}>
     <View style={styles.context}>
       <Text style={styles.titre}>Avez vous un code de license </Text>
-      <Text style={styles.lastWord}>pour accéder a l'application ?</Text>
+      <Text style={styles.lastWord}>pour accÃ©der a l'application ?</Text>
     </View>
       <Pressable 
       style={({ pressed }) => [styles.pres, pressed && styles.presPressed]}
       onPress={() => navigation.navigate('Formulaire')}
-      android_ripple={{ color: 'purple', radius: 125 }}
+      android_ripple={{ color: 'purple', radius: 100 }}
       >
         <Text style={styles.texte}>Je n'ai pas un code license</Text>
       </Pressable>
       <Pressable 
        style={({ pressed }) => [styles.pres, pressed && styles.presPressed]}
        onPress={() => navigation.navigate("Code")}
-       android_ripple={{ color: 'purple', radius: 125 }}
+       android_ripple={{ color: 'purple', radius: 100 }}
        >
-        <Text style={styles.texte}>J'ai un code license             </Text>
+        <Text style={styles.texte}>J'ai un code license           </Text>
       </Pressable>
       <View style={styles.footer}>
-        <Text style={styles.footerText}>Time Track</Text>
-        <Text style={styles.footerText}>© Time Track 2023 V 1.01</Text>
+        <Text style={styles.footerText}>votre temp</Text>
+        <Text style={styles.footerText}>© All Rights Reserved</Text>
       </View>
+      
       </ImageBackground>
         
     );
@@ -95,12 +96,12 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     width: '100%',
     padding: 10,
-    backgroundColor: '#2F4F4F',
+    backgroundColor: '#eee',
     position: 'absolute',
-    bottom: 0,
-  },
-  footerText: {
-    fontSize: 12,
-    color: 'white',
-  },
+    bottom: 0,},
+     
+    footerText: {
+      fontSize: 12,
+      color: '#444',
+    },
 });

@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
 import { StyleSheet, Text, TextInput, View, Button, ImageBackground, Pressable } from 'react-native';
 import { useTranslation } from 'react-i18next';
+import { useDispatch } from 'react-redux';
+import { signInUser } from '../store/auth/service';
 
 export default function CodeScreen({ navigation }) {
-  const image = require('../../assets/bg.png');
+  const dispatch = useDispatch();
+  const image = require('../../assets/icons/bg.png');
 
   const [licenseCode, setLicenseCode] = useState(['', '', '', '']);
   const [errorMessage, setErrorMessage] = useState('');
@@ -33,17 +36,25 @@ export default function CodeScreen({ navigation }) {
 
   const handleFormSubmit = () => {
     const code = licenseCode.join('');
-    if (code !== '1111111111111111' && code !== '0000000000000000') {
-      setErrorMessage('Code de licence invalide');
-      return;
-    }
+    dispatch(signInUser({codeLicense: code})).then(response => {
+      if (response.meta.requestStatus == "fulfilled") {
+        navigation.navigate('Percode');
+      } else {
+        setErrorMessage("try with correct");
+      }
+    });
+  }
+    
+
+
+   
 
     // Implement your form submission logic here
     console.log('Code de licence:', code);
 
     setErrorMessage('');
-    navigation.navigate('Precode');
-  };
+    navigation.navigate('Percode');
+  
 
   return (
     <ImageBackground source={image} style={styles.backgroundImage}>
@@ -86,7 +97,7 @@ export default function CodeScreen({ navigation }) {
         {errorMessage ? <Text style={styles.error}>{errorMessage}</Text> : null}
         <View style={styles.press}>
           <Pressable onPress={handleFormSubmit}>
-            <Text style={styles.txt}>       Envoyer</Text>
+            <Text style={styles.txt}>Envoyer</Text>
           </Pressable>
         </View>
       </View>
