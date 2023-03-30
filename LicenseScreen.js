@@ -1,23 +1,38 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, Button } from 'react-native';
+import { useState } from 'react';
+import { StyleSheet, Text, View, Button, ImageBackground, Pressable } from 'react-native';
+import { CheckBox } from 'react-native-elements';
 
 export default function LicenseScreen({navigation,route}) {
-  let language = route.params.language;
-  let greeting = language === "french" ? "Bonjour" : "Hello";
+
   return (
-    <View style={styles.container}>
-      <Text>{greeting}</Text>
-      <Button
-        title="je n'ai pas de code licence "
-        onPress={() => navigation.navigate("Formulaire")}
-      />
-       <Button
-        title="j'ai un code licence "
-        onPress={() => navigation.navigate("Code")}
-      />
-      <StatusBar style="auto" />
+    <ImageBackground source={require('../../assets/icons/bg.png')}style={styles.container}>
+    <View style={styles.context}>
+      <Text style={styles.titre}>Avez vous un code de license </Text>
+      <Text style={styles.lastWord}>pour accÃ©der a l'application ?</Text>
     </View>
-  );
+      <Pressable 
+      style={({ pressed }) => [styles.pres, pressed && styles.presPressed]}
+      onPress={() => navigation.navigate('Formulaire')}
+      android_ripple={{ color: 'purple', radius: 100 }}
+      >
+        <Text style={styles.texte}>Je n'ai pas un code license</Text>
+      </Pressable>
+      <Pressable 
+       style={({ pressed }) => [styles.pres, pressed && styles.presPressed]}
+       onPress={() => navigation.navigate("Code")}
+       android_ripple={{ color: 'purple', radius: 100 }}
+       >
+        <Text style={styles.texte}>J'ai un code license           </Text>
+      </Pressable>
+      <View style={styles.footer}>
+        <Text style={styles.footerText}>votre temp</Text>
+        <Text style={styles.footerText}>© All Rights Reserved</Text>
+      </View>
+      
+      </ImageBackground>
+        
+    );
 }
 
 const styles = StyleSheet.create({
@@ -27,4 +42,66 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  pres: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 20,
+    backgroundColor: 'white',
+    borderRadius: 10,
+    padding: 20,
+    
+  },
+  pres1: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 20,
+    backgroundColor: 'white',
+    borderRadius: 10,
+    padding: 20,
+  },
+  titre: {
+    textAlign: 'center',
+    fontSize: 23,
+    letterSpacing: 0.25,
+    color:'white',
+  },
+  lastWord: {
+    textAlign: 'center',
+    fontSize: 23,
+    letterSpacing: 0.25,
+    color:'white',
+  },
+  context: {
+    paddingBottom:60,
+  },
+  texte: {
+    fontSize: 17,
+    lineHeight: 21,
+    
+    color: 'black',
+  
+  },
+  presPressed: {
+    backgroundColor: 'white',
+  },
+  header: {
+   position:'absolute',
+   width:'100%',
+   height:100,
+   backgroundColor:'green',
+  },
+  footer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    width: '100%',
+    padding: 10,
+    backgroundColor: '#eee',
+    position: 'absolute',
+    bottom: 0,},
+     
+    footerText: {
+      fontSize: 12,
+      color: '#444',
+    },
 });
